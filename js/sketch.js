@@ -29,7 +29,7 @@ function setup() {
 }
 
 function startPitch() {
-  pitch = ml5.pitchDetection('./model/', audioContext, mic.stream, modelLoaded);
+  pitch = ml5.pitchDetection('./model/', audioContext, mic.stream%256, modelLoaded);
 }
 
 function modelLoaded() {
