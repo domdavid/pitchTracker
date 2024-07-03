@@ -33,7 +33,7 @@ function startPitch() {
 }
 
 function modelLoaded() {
-  // select('#status').html('Model Loaded');
+  select('#status').html('Model Loaded');
   getPitch();
 }
 
