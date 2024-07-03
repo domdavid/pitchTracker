@@ -14,7 +14,7 @@ let level;
 let pX, pY;
 
 function preload() {
-  song = loadSound('assets/satie.mp3');
+  song = loadSound('satie.mp3');
 }
 
 function setup() {
