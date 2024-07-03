@@ -50,7 +50,7 @@ const handleAudioStream = (audioStream) => {
       container.appendChild(element);
     });
   };
- 
+
   // Start the continuous visualization
   updateVisualization();
 };
@@ -63,7 +63,31 @@ const handleAudioError = (error) => {
 // Main function to initiate audio stream access
 const initializeAudioVisualization = () => {
   // Try to access the user's audio input
-  navigator.getUserMedia({ audio: true, video: false }, handleAudioStream, handleAudioError);
+  // navigator.getUserMedia().getUserMedia({ audio: true, video: false }, handleAudioStream, handleAudioError);
+  navigator.getUserMedia =
+    navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia;
+
+  if (navigator.getUserMedia) {
+    navigator.getUserMedia(
+      { audio: true, video: { width: 1280, height: 720 } },
+      (stream) => {
+        const video = document.querySelector("video");
+        video.srcObject = stream;
+        video.onloadedmetadata = (e) => {
+          video.play();
+        };
+      },
+      (err) => {
+        console.error(`The following error occurred: ${err.name}`);
+      },
+    );
+  } else {
+    console.log("getUserMedia not supported");
+  }
+
+
 };
 
 // Call the main function to begin the audio stream access
