@@ -6,7 +6,7 @@ var wavesurfer = WaveSurfer.create({
   });
   
   //Loading the audio file you want to play
-  wavesurfer.load('audio/LOVE_s.mp3');
+  wavesurfer.load('satie.mp3');
   
   // You can also load wav files if you want
   //wavesurfer.load('audio/songaudio.wav');
