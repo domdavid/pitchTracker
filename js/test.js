@@ -1,3 +1,6 @@
+import WaveSurfer from 'wavesurfer.js'
+
+
 //Creating  a wavesurfer instance, passing the container selector along with some options like progress color and wave color
 const wavesurfer = WaveSurfer.create({
     container: '#waveform',
