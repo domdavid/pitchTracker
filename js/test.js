@@ -16,4 +16,10 @@ var wavesurfer = WaveSurfer.create({
     wavesurfer.play();
   });
   
-  
+  wavesurfer.registerPlugin(
+    Spectrogram.create({
+      labels: true,
+      height: 200,
+      splitChannels: true,
+    }),
+  )
