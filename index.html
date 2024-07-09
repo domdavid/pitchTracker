@@ -20,13 +20,29 @@
   <!-- <script src="js/test.js"></script> -->
   <script>
     //Creating  a wavesurfer instance, passing the container selector along with some options like progress color and wave color
-    const wavesurfer = WaveSurfer.create({
-        container: '#waveform',
-        waveColor: 'violet',
-        progressColor: 'purple',
-        url: './satie.mp3'
-      });
+    // const wavesurfer = WaveSurfer.create({
+    //     container: '#waveform',
+    //     waveColor: 'violet',
+    //     progressColor: 'purple',
+    //     url: './satie.mp3'
+    //   });
       
+
+      const wavesurfer = WaveSurfer.create({
+  container: document.body,
+  waveColor: 'rgb(200, 0, 200)',
+  progressColor: 'rgb(100, 0, 100)',
+  url: './satie.mp3',
+
+  // Set a bar width
+  barWidth: 2,
+  // Optionally, specify the spacing between bars
+  barGap: 1,
+  // And the bar radius
+  barRadius: 2,
+})
+
+
       //Loading the audio file you want to play
       wavesurfer.load('satie.mp3');
       
