@@ -27,24 +27,7 @@
     //     url: './satie.mp3'
     //   });
       
-
-      const wavesurfer = WaveSurfer.create({
-  container: '#waveform',
-  waveColor: 'rgb(200, 0, 200)',
-  progressColor: 'rgb(100, 0, 100)',
-  url: './satie.mp3',
-
-  // Set a bar width
-  barWidth: 2,
-  // Optionally, specify the spacing between bars
-  barGap: 1,
-  // And the bar radius
-  barRadius: 2,
-})
-
-
-      //Loading the audio file you want to play
-      wavesurfer.load('satie.mp3');
+      
       
     //   wavesurfer.registerPlugin(
     //     Spectrogram.create({
@@ -53,14 +36,31 @@
     //       splitChannels: true,
     //     }),
     //   )
-    
+    const wavesurfer = WaveSurfer.create({
+  container: document.body,
+  waveColor: 'rgb(200, 0, 200)',
+  progressColor: 'rgb(100, 0, 100)',
+  url: '/examples/audio/audio.wav',
+
+  // Set a bar width
+  barWidth: 2,
+  // Optionally, specify the spacing between bars
+  barGap: 1,
+  // And the bar radius
+  barRadius: 2,
+})
+//Loading the audio file you want to play
+wavesurfer.load('satie.mp3');
+wavesurfer.once('interaction', () => {
+  wavesurfer.play()
+})
     
       // You can also load wav files if you want
       //wavesurfer.load('audio/songaudio.wav');
       
       //This is the event you play the wavesurver instance i.e when wavesurfer ready event
       wavesurfer.on('ready', function() {
-        // wavesurfer.play();
+        wavesurfer.play();
       });
       
       
