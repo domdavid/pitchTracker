@@ -8,8 +8,7 @@
 <body>
   <!-- Adding wavesurfer.js script -->
   <script src="https://unpkg.com/wavesurfer.js@7"></script>
-  <script
-			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 			  crossorigin="anonymous"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script> -->
@@ -65,6 +64,16 @@
 })
 //Loading the audio file you want to play
 wavesurfer.load('satie.mp3');
+
+// Initialize the Spectrogram plugin
+ws.registerPlugin(
+  Spectrogram.create({
+    labels: true,
+    height: 200,
+    splitChannels: true,
+  }),
+)
+
 wavesurfer.once('interaction', () => {
   wavesurfer.play()
 })
