@@ -9,14 +9,12 @@
   <!-- Adding wavesurfer.js script -->
   <script src="https://unpkg.com/wavesurfer.js@7"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script> -->
-  <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/spectrogram.esm.js"></script>
-  <script src = "js/spec.js"></script>
-  <h1>Wavesurfer Test</h1>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
+    <h1>Wavesurfer Test</h1>
   
   <!-- !-- Create a container where the waveform is to appear-->
   <div id="waveform"></div>
-
-  <div id="waveform2"></div>
+ 
   
   <!-- <script src="js/main.js" defer="defer"></script> -->
   <!-- <script src="js/test.js"></script> -->
@@ -26,7 +24,7 @@
         container: '#waveform',
         waveColor: 'violet',
         progressColor: 'purple',
-        url: 'satie.mp3'
+        url: './satie.mp3'
       });
       
       //Loading the audio file you want to play
