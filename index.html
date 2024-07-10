@@ -47,13 +47,7 @@
   progressColor: 'rgb(100, 0, 100)',
   url: '/examples/audio/audio.wav',
   plugins: [
-    Hover.create({
-      lineColor: '#ff0000',
-      lineWidth: 2,
-      labelBackground: '#555',
-      labelColor: '#fff',
-      labelSize: '11px',
-    }),
+ 
   ],
   // Set a bar width
   barWidth: 2,
@@ -66,13 +60,13 @@
 wavesurfer.load('satie.mp3');
 
 // Initialize the Spectrogram plugin
-ws.registerPlugin(
-  Spectrogram.create({
-    labels: true,
-    height: 200,
-    splitChannels: true,
-  }),
-)
+// ws.registerPlugin(
+//   Spectrogram.create({
+//     labels: true,
+//     height: 200,
+//     splitChannels: true,
+//   }),
+// )
 
 wavesurfer.once('interaction', () => {
   wavesurfer.play()
