@@ -1,0 +1,17 @@
+import librosa
+from matplotlib import pyplot as plt
+
+import matplotlib.pyplot as plt  
+
+filename = 'great.wav' # librosa.example('nutcracker')
+
+wave_data, samplerate=librosa.load(filename)   
+plt.subplot(211)
+plt.plot(wave_data) 
+plt.title('wave')
+pitches, magnitudes = librosa.piptrack(y=wave_data, sr=samplerate)
+plt.subplot(212)
+plt.imshow(pitches[:100, :], aspect="auto", interpolation="nearest", origin="lower")
+plt.title('pitches') 
+
+plt.show()

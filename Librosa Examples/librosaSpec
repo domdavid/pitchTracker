@@ -1,0 +1,26 @@
+import librosa
+import numpy as np
+import pandas as pd
+
+
+from matplotlib import pyplot as plt
+
+import matplotlib.pyplot as plt  
+
+y, sr = librosa.load('great.wav')
+librosa.feature.melspectrogram(y=y, sr=sr)
+
+fig, ax = plt.subplots()
+S = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128, fmax=8000)
+S_dB = librosa.power_to_db(S, ref=np.max)
+img = librosa.display.specshow(S_dB, x_axis='time', y_axis='mel', sr=sr, fmax=8000, ax=ax)
+
+fig.colorbar(img, ax=ax, format='%+2.0f dB')
+ax.set(title='Mel-frequency spectrogram')
+
+df = pd.DataFrame({"frequency" : y, "time" : sr})
+df.to_csv("pitches.csv", index=False)
+
+
+print(S_dB)
+plt.show()
