@@ -1,6 +1,7 @@
 import librosa
 from matplotlib import pyplot as plt
-
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt  
 
 filename = 'great.wav' # librosa.example('nutcracker')
@@ -12,6 +13,11 @@ plt.title('wave')
 pitches, magnitudes = librosa.piptrack(y=wave_data, sr=samplerate)
 plt.subplot(212)
 plt.imshow(pitches[:100, :], aspect="auto", interpolation="nearest", origin="lower")
-plt.title('pitches') 
+plt.title('pitches')
+
+# np.set_printoptions(threshold=np.nan)
+print (pitches[np.nonzero(pitches)])
+df = pd.DataFrame({"frequency" : pitches[np.nonzero(pitches)]})
+df.to_csv("pitches.csv", index=False) 
 
 plt.show()
