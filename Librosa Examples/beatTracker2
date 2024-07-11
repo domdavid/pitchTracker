@@ -6,18 +6,33 @@ import matplotlib.pyplot as plt
 
 filename = 'great.wav' # librosa.example('nutcracker')
 
+threshold = 0.5
+
 wave_data, samplerate=librosa.load(filename)   
 plt.subplot(211)
 plt.plot(wave_data) 
 plt.title('wave')
 pitches, magnitudes = librosa.piptrack(y=wave_data, sr=samplerate)
+
+selected_pitches = pitches[magnitudes > threshold]
+
 plt.subplot(212)
-plt.imshow(pitches[:100, :], aspect="auto", interpolation="nearest", origin="lower")
+# plt.imshow(pitches[:100, :], aspect="auto", interpolation="nearest", origin="lower")
+# plt.imshow(selected_pitches, aspect="auto", interpolation="nearest", origin="lower")
+# plt.plot(selected_pitches)
+plt.ylabel('frequency') 
+
+plt.scatter( np.arange(len(selected_pitches)), selected_pitches, marker='.', color='b', label='')
+
 plt.title('pitches')
 
 # np.set_printoptions(threshold=np.nan)
 print (pitches[np.nonzero(pitches)])
-df = pd.DataFrame({"frequency" : pitches[np.nonzero(pitches)]})
+
+# Filter pitches based on magnitude
+df = pd.DataFrame({"frequency" : selected_pitches})
+
+print("Selected pitches:", selected_pitches)
 df.to_csv("pitches.csv", index=False) 
 
 plt.show()
