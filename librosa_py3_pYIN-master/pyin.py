@@ -18,7 +18,6 @@ np.float = np.float64
 np.bool = np.bool_
 
 
-
 def pyin(filename, inputSampleRate=44100, channels=1, frame_length=2048, hop_length=256, lowAmp=0.25, onsetSensitivity=0.7, pruneThresh=0.1):
     audio, fs = librosa.load(filename, sr=inputSampleRate)
     pYinInst = pYINmain.PyinMain()
@@ -32,15 +31,15 @@ def pyin(filename, inputSampleRate=44100, channels=1, frame_length=2048, hop_len
     for frame in all_frames.T:
         fs, rms = pYinInst.process(frame)
         rmslist.append(rms)
-    
+     
     monoPitch = pYinInst.getSmoothedPitchTrack()
     pitchlist = [ii.values for ii in fs.m_oSmoothedPitchTrack]
     
     return np.array(pitchlist), np.array(rmslist)
 
 if __name__ == "__main__":
-    pitch, _ = pyin('src/great.wav')
+    pitch, _ = pyin('great.wav')
     
     df = pd.DataFrame({"frequency" : pitch.ravel()})
     df.to_csv("pitches.csv", index=False)
-    print(pitch.ravel())
+    print(pitch)

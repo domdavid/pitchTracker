@@ -44,9 +44,6 @@ plt.ylabel('Mel Frequency')
 plt.ylim([2000, 5500])
 plt.show()
 
-
-
-
 # plt.scatter( np.arange(len(selected_pitches)), selected_pitches, marker='.', color='b', label='')
 
 # plt.title('pitches')
