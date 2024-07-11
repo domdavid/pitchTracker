@@ -9,30 +9,54 @@ filename = 'great.wav' # librosa.example('nutcracker')
 threshold = 0.5
 
 wave_data, samplerate=librosa.load(filename)   
-plt.subplot(211)
+wave = plt.subplot(211)
 plt.plot(wave_data) 
 plt.title('wave')
+# Set x-axis limits
+plt.xlim(0, len(wave_data))  # Set the upper limit to the length of wave_data
+
+
+
 pitches, magnitudes = librosa.piptrack(y=wave_data, sr=samplerate)
 
 selected_pitches = pitches[magnitudes > threshold]
-
+sr  = samplerate
 plt.subplot(212)
-# plt.imshow(pitches[:100, :], aspect="auto", interpolation="nearest", origin="lower")
-# plt.imshow(selected_pitches, aspect="auto", interpolation="nearest", origin="lower")
-# plt.plot(selected_pitches)
-plt.ylabel('frequency') 
+# plt.imshow(pitches[:, :], aspect="auto", interpolation="nearest", origin="lower")
+# # plt.plot(selected_pitches)
+# plt.ylabel('frequency')
+# Compute the mel-scaled spectrogram
+S = librosa.feature.melspectrogram(y=wave_data, sr=samplerate)
 
-plt.scatter( np.arange(len(selected_pitches)), selected_pitches, marker='.', color='b', label='')
+# Convert to decibels (dB)
+S_dB = librosa.power_to_db(S, ref=np.max)
+# Set a threshold (adjust as needed)
+threshold_dB = -40  # Example threshold: -30 dB
 
-plt.title('pitches')
-
-# np.set_printoptions(threshold=np.nan)
-print (pitches[np.nonzero(pitches)])
-
-# Filter pitches based on magnitude
-df = pd.DataFrame({"frequency" : selected_pitches})
-
-print("Selected pitches:", selected_pitches)
-df.to_csv("pitches.csv", index=False) 
-
+# Apply thresholding
+S_dB_thresholded = np.where(S_dB > threshold_dB, S_dB, -200)  # Set values below threshold to -100 dB
+print(S_dB)
+# Display the spectrogram
+librosa.display.specshow(S_dB_thresholded, x_axis='time', y_axis='mel', sr = sr, cmap='viridis')
+plt.title('Mel-Scaled Spectrogram')
+plt.xlabel('Time (s)')
+plt.ylabel('Mel Frequency')
+plt.ylim([2000, 5500])
 plt.show()
+
+
+
+
+# plt.scatter( np.arange(len(selected_pitches)), selected_pitches, marker='.', color='b', label='')
+
+# plt.title('pitches')
+
+# # np.set_printoptions(threshold=np.nan)
+# print (pitches[np.nonzero(pitches)])
+
+# # Filter pitches based on magnitude
+# df = pd.DataFrame({"frequency" : selected_pitches})
+
+# print("Selected pitches:", selected_pitches)
+# df.to_csv("pitches.csv", index=False) 
+
