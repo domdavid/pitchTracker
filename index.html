@@ -19,9 +19,27 @@
     </script>
     </head>
   <body>
-    <div id="waveform"></div>
-    <div style = "width:100%; height:50px"></div>
-    <div id = "spec"></div>
+
+
+    <div id="demo">
+      <div id="waveform">
+          <div class="progress progress-striped active" id="progress-bar">
+              <div class="progress-bar progress-bar-info"></div>
+          </div>
+          <!-- Here be waveform -->
+      </div>
+      <div id="spec"></div>
+      <div class="controls">
+          <button class="btn btn-primary" data-action="play">
+              <i class="glyphicon glyphicon-play"></i>
+              Play
+              /
+              <i class="glyphicon glyphicon-pause"></i>
+              Pause
+          </button>
+      </div>
+  </div>
+
 
     <p>
       <label>
