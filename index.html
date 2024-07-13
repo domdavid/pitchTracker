@@ -1,92 +1,44 @@
-<!doctype html>
-<!-- You can use this link as well to call wavesurfer.js. This is what's given on their updated documentation-->
 
-<head>
-  <title>Test Website</title>
-</head>
+<html>
+  <head>
+    <style>
+      #spec{
+  margin: 10px auto;
+  position: relative;
+}
+#spec canvas{
+  left: 0;
+}
 
-<body>
-  <!-- Adding wavesurfer.js script -->
-  <script src="https://unpkg.com/wavesurfer.js@7"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-			  crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script> -->
-    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/hover.min.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/spectrogram.min.js"></script>
-    <h1>Wavesurfer Test</h1>
-  
-  <!-- !-- Create a container where the waveform is to appear-->
-  <div id="waveform"></div>
- 
-  
-  <!-- <script src="js/main.js" defer="defer"></script> -->
-  <!-- <script src="js/test.js"></script> -->
-  <script>
-    //Creating  a wavesurfer instance, passing the container selector along with some options like progress color and wave color
-    // const wavesurfer = WaveSurfer.create({
-    //     container: '#waveform',
-    //     waveColor: 'violet',
-    //     progressColor: 'purple',
-    //     url: './satie.mp3'
-    //   });
-      
-      
-      
-    //   wavesurfer.registerPlugin(
-    //     Spectrogram.create({
-    //       labels: true,
-    //       height: 200,
-    //       splitChannels: true,
-    //     }),
-    //   )
-    const wavesurfer = WaveSurfer.create({
-  container: '#waveform',
-  waveColor: 'rgb(200, 0, 200)',
-  progressColor: 'rgb(100, 0, 100)',
-  url: '/examples/audio/audio.wav',
-  plugins: [
- 
-  ],
-  // Set a bar width
-  barWidth: 2,
-  // Optionally, specify the spacing between bars
-  barGap: 1,
-  // And the bar radius
-  barRadius: 2,
-})
-//Loading the audio file you want to play
-wavesurfer.load('great.wav');
-
-// Initialize the Spectrogram plugin
-// ws.registerPlugin(
-//   Spectrogram.create({
-//     labels: true,
-//     height: 200,
-//     splitChannels: true,
-//   }),
-// )
-
-wavesurfer.once('interaction', () => {
-  wavesurfer.play()
-})
-    
-      // You can also load wav files if you want
-      //wavesurfer.load('audio/songaudio.wav');
-      
-      //This is the event you play the wavesurver instance i.e when wavesurfer ready event
-      wavesurfer.on('ready', function() {
-        // wavesurfer.play();
-      });
-      
-      
-    
-    
+#specLabels{
+    position: absolute!important;
+    color: #ff0000;
+}
+      </style>
+    <script type="module" src = "/js/import2.js?23">
     </script>
-</body>
+    </head>
+  <body>
+    <div id="waveform"></div>
+    <div style = "width:100%; height:50px"></div>
+    <div id = "spec"></div>
 
+    <p>
+      <label>
+        <input type="checkbox" checked="${loop}" />
+        Loop regions
+      </label>
 
+      <label style="margin-left: 2em">
+        Zoom: <input type="range" min="10" max="1000" value="10" />
+      </label>
+    </p>
 
+    <p>
+      📖 <a href="https://wavesurfer.xyz/docs/classes/plugins_regions.RegionsPlugin">Regions plugin docs</a>
+    </p>
+    <script>
 
-</html>
+      </script>
+    </body>
+  </html>
