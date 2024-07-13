@@ -106,7 +106,7 @@ import Spectrogram from 'https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.
           labels: true,
           height: 200,
           container: "#spec",
-          splitChannels: true,
+          splitChannels: false,
         }),
       )
       // Update the zoom level on slider change
